@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return "Bienvenido al panel de administración";
-});
+    return view('admin.dashboard');
+})->name('admin.dashboard');
 
 
 // Route::get('/', function () {
