@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+            $table->text('body');
 
-            //taggable id and type
-            $table->morphs('taggable');
+            //user id
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            //commentable id and type
+            $table->morphs('commentable');
 
 
             $table->timestamps();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('taggables');
+        Schema::dropIfExists('comments');
     }
 };
