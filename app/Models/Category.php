@@ -9,6 +9,20 @@ class Category extends Model
 {
     use HasFactory;
 
+    //proteccion de campos
+    public $table = 'categories';
+    protected $primaryKey = 'id';
+    public $timestamps = True;
+
+    //asignacion masiva
+    protected $fillable =
+    [
+        'name',
+
+    ];
+    protected $guarded = ['id'];
+
+
 
     //relacion uno a muchos con post
     public function posts(){
