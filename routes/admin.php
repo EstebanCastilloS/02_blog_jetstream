@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin.dashboard');
-})->name('admin.dashboard');
+})->name('dashboard');
 
 
-// Route::get('/', function () {
-//     return view('admin.dashboard');
-// })->middleware(['can:Acceso al Dashboard'])
-// ->name('admin.dashboard');
+//ruta de categorias
+Route::resource('/categories', CategoryController::class);
+

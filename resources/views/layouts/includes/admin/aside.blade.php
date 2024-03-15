@@ -6,14 +6,12 @@
             'active' => request()->routeIs('admin.dashboard'),
             'icon' => 'fa-solid fa-gauge-high',
         ],
-        // [
-        //     'name' => 'Categorias',
-        //     'url' => route('admin.categories.index'),
-        //     'active' => request()->routeIs('admin.categories.*'),
-        //     'icon' => 'fa-solid fa-inbox',
-        //     'can' => ['Gestion de Categorias']
-
-        // ],
+        [
+            'name' => 'Categorias',
+            'url' => route('admin.categories.index'),
+            'active' => request()->routeIs('admin.categories.*'),
+            'icon' => 'fa-solid fa-inbox',
+        ],
         // [
         //     'name' => 'Articulos',
         //     'url' => route('admin.posts.index'),
