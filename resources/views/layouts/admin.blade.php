@@ -21,6 +21,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    @stack("css")
+
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -58,6 +60,8 @@
             Swal.fire(@json(session('swal')));
         </script>
     @endif
+
+    @stack("js")
 
 </body>
 

@@ -26,10 +26,32 @@
 
         <div class="flex justify-end">
 
+            <x-danger-button class="mr-2" onclick="deleteCategory()">
+                 Eliminar categoria
+            </x-danger-button>
+
             <x-button>Actualizar categoria</x-button>
         </div>
 
     </form>
+
+    <form
+        action="{{ route('admin.categories.destroy', $category) }}"
+        method="POST"
+        id="formDelete">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    @push('js')
+        <script>
+            function deleteCategory(){
+                let form = document.getElementById('formDelete');
+                form.submit();
+            }
+        </script>
+    @endpush
+
 
 </x-admin-layout>
 

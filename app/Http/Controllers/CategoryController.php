@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Post;
 
 class CategoryController extends Controller
 {
@@ -76,6 +77,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+
+        $category->delete();
+
+        session()->flash(
+            'swal', [
+                'icon' => 'success',
+                'title' => 'Bien Hecho',
+                'text' => 'La categoría se eliminó correctamente',
+            ]);
+
+        return redirect()->route('admin.categories.index');
     }
+
+
 }
