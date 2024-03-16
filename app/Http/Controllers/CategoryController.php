@@ -44,20 +44,10 @@ class CategoryController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        return view('admin.categories.show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit');
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -65,7 +55,20 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        // $category->name = $request->name;
+        // $category->update();
+
+        $category->update($request->all());
+
+        session()->flash(
+            'swal', [
+                'icon' => 'success',
+                'title' => 'Bien Hecho',
+                'text' => 'La categoría se actualizó correctamente',
+            ]);
+
+        return redirect()->route('admin.categories.index', $category);
+
     }
 
     /**

@@ -9,5 +9,6 @@ Route::get('/', function () {
 
 
 //ruta de categorias
-Route::resource('/categories', CategoryController::class);
+Route::resource('/categories', CategoryController::class)
+    ->except('show');
 
