@@ -9,6 +9,28 @@ class Post extends Model
 {
     use HasFactory;
 
+    //proteccion de campos
+    public $table = 'posts';
+    protected $primaryKey = 'id';
+    public $timestamps = True;
+
+    protected $fillable =
+    [
+        'title',
+        'slug',
+        'excerpt',
+        'body',
+        'image_path',
+        'published',
+        'category_id',
+        'user_id',
+        'published_at',
+
+    ];
+
+    protected $guarded = ['id'];
+
+
     //relacion uno a muchos inversa con usuarios
     public function user(){
         return $this->belongsTo(User::class);
