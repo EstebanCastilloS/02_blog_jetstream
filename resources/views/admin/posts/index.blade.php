@@ -13,7 +13,7 @@
             <li class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div class="div">
                     <a href="{{ route('admin.posts.edit', $post) }}">
-                        <img class="aspect-[16/9] object-cover object-center w-full " src="{{ ($post->image_path) }}"
+                        <img class="aspect-[16/9] object-cover object-center w-full " src="{{ ($post->image) }}"
                         alt="">
                     </a>
                 </div>
