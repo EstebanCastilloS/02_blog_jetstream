@@ -216,10 +216,10 @@
         </script> --}}
 
         <script>
-            // function deletePost() {
-            //     let form = document.getElementById('formDelete');
-            //     form.submit();
-            // }
+            function deletePost() {
+                let form = document.getElementById('formDelete');
+                form.submit();
+            }
         </script>
 
         <script>

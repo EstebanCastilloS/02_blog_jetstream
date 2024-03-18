@@ -89,6 +89,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Post eliminado correctamente',
+            'text' => 'El post se eliminó con éxito',
+        ]);
+
+        return redirect()->route('admin.posts.index');
     }
 }
