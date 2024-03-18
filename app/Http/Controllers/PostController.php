@@ -52,7 +52,11 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        $users = User::all();
+        // $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'users'));
+
     }
 
     /**
@@ -60,7 +64,24 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
+
+        // $data = $request->all();
+
+        session()->flash('swal', [
+            'type' => 'success',
+            'title' => 'Post actualizado correctamente',
+            'text' => 'El post se actualizó con éxito',
+        ]);
+
+        // if($request->file('image')){
+        //     $data['image_path'] = Storage::put('posts', $request->image);
+        // }
+
+        //$post->update($data);
+
+        return redirect()->route('admin.posts.index', $post);
+
     }
 
     /**

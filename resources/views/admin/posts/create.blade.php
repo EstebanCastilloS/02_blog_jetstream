@@ -86,7 +86,7 @@
             </x-select>
         </div>
 
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <x-label class="mb-2 ">
                 Usuarios
             </x-label>
@@ -98,7 +98,7 @@
                     </option>
                 @endforeach
             </x-select>
-        </div>
+        </div> --}}
 
         <div class="flex justify-end">
             <x-button class="ml-4">

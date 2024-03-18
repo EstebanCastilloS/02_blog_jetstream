@@ -29,7 +29,7 @@ class StorePostRequest extends FormRequest
             'image_path' => '',
             'published' => 'required',
             'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'published_at' => '',
         ];
 
