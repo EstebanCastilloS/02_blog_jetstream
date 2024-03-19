@@ -63,4 +63,10 @@ class TagController extends Controller
     {
         //
     }
+
+    public function obtenerTags()
+    {
+        $tags = Tag::all();
+        return response()->json($tags);
+    }
 }
