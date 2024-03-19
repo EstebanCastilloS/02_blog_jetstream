@@ -1,10 +1,10 @@
 <x-admin-layout>
     <h1>hola desde edit de Posts</h1>
 
-    {{-- @push('css')
+    @push('css')
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    @endpush --}}
+    @endpush
 
     <form action="{{ route('admin.posts.update', $post) }}"
           method="POST"
@@ -80,24 +80,25 @@
         </div> --}}
 
         {{-- Etiquetas --}}
-        {{-- <div class="mb-4">
+        <div class="mb-4">
             <x-label class="mb-1">
                 Etiquetas
             </x-label>
 
             <select class="select2"
-                    name="tags"
+                    name="tags[]"
                     multiple="multiple"
                     style="width: 100%">
 
                 @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}">
+                    <option value="{{ $tag->id }}"
+                        @selected(collect(old('tags', $post->tags->pluck('id')))->contains($tag->id))>
                         {{ $tag->name }}
                     </option>
                 @endforeach
 
             </select>
-        </div> --}}
+        </div>
 
         {{-- Contenido del Artículo --}}
         <div class="mb-4">
@@ -204,16 +205,16 @@
     </form>
 
     @push('js')
-        {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js">
-        </script> --}}
-        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
-        </script> --}}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
+        </script>
 
-        {{-- <script>
+        <script>
             $(document).ready(function() {
                 $('.select2').select2();
             });
-        </script> --}}
+        </script>
 
         <script>
             function deletePost() {

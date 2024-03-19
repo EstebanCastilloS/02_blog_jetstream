@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Models\User;
 
 class PostController extends Controller
@@ -54,8 +55,8 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $users = User::all();
-        // $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'users'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'users', 'tags'));
 
     }
 
@@ -64,9 +65,14 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+
+        //guardar de manera asyncrónica a la tabla tags
+        $post->tags()->sync($request->tags);
+
         $post->update($request->all());
 
         // $data = $request->all();
+
 
         session()->flash('swal', [
             'type' => 'success',

@@ -13,6 +13,7 @@
 
         <x-validation-errors class="mb-4" />
 
+        {{-- Título del Artículo --}}
         <div class="mb-4">
             <x-label class="mb-2">
                 Título del Artículo
@@ -25,6 +26,7 @@
             placeholder="Ingrese el nombre del artículo"/>
         </div>
 
+        {{-- Contenido del Slug --}}
         <div class="mb-4">
             <x-label class="mb-2 ">
                 Contenido del Slug
@@ -37,6 +39,7 @@
             placeholder="Ingrese el contenido del Slug"/>
         </div>
 
+        {{-- Extracto del Artículo --}}
         <div class="mb-4">
             <x-label class="mb-2 ">
                 Extracto del Artículo
@@ -49,6 +52,7 @@
             </x-textarea>
         </div>
 
+        {{-- Contenido del Artículo --}}
         <div class="mb-4">
             <x-label class="mb-2 ">
                 Contenido del Artículo
@@ -61,6 +65,7 @@
             </x-textarea>
         </div>
 
+        {{-- Estado del Artículo --}}
         <div class="mb-4">
             <x-label class="mb-2 ">
                 Estado del Artículo
@@ -72,6 +77,7 @@
             </x-select>
         </div>
 
+        {{-- Categorías --}}
         <div class="mb-4">
             <x-label class="mb-2 ">
                 Categorías
@@ -86,6 +92,7 @@
             </x-select>
         </div>
 
+        {{-- Usuarios --}}
         {{-- <div class="mb-4">
             <x-label class="mb-2 ">
                 Usuarios

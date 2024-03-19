@@ -21,14 +21,16 @@ class DatabaseSeeder extends Seeder
         //crear 20 usuarios
         User::factory(20)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Naun Castillo',
-        //     'email' => 'naunestebancastillo@gmail.com',
-        //     'password' => bcrypt('11111111'),
-        // ]);
+        User::factory()->create([
+            'name' => 'Naun Castillo',
+            'email' => 'naunestebancastillo@gmail.com',
+            'password' => bcrypt('11111111'),
+        ]);
 
         //crear 100 posts
         Post::factory(100)->create();
+
+        $this->call(TagSeeder::class);
 
     }
 }

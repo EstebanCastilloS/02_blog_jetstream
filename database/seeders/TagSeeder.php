@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,13 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $tags = ['laravel','vue','react','Blade'];
+
+        foreach ($tags as $tag) {
+            Tag::create([
+                'name' => $tag
+            ]);
+        }
+
     }
 }
