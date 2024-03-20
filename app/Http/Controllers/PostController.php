@@ -79,7 +79,8 @@ class PostController extends Controller
             if($post->image_path){
                 Storage::delete($post->image_path);
             }
-            $data['image_path'] = Storage::put('posts', $request->image);
+            $file_name = $request->slug . '.' . $request->file('image')->getClientOriginalExtension(); ;
+            $data['image_path'] = Storage::putFileAs('posts', $request->image, $file_name);
 
         }
 
