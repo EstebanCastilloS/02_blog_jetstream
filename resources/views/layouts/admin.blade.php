@@ -18,6 +18,9 @@
     {{-- swealert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -60,6 +63,9 @@
             Swal.fire(@json(session('swal')));
         </script>
     @endif
+
+    {{-- agregamos el script de ckeditor5 --}}
+    <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
 
     @stack("js")
 

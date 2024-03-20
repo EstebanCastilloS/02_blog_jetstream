@@ -57,7 +57,7 @@
             <x-label class="mb-2 ">
                 Extracto del Artículo
             </x-label>
-            <x-textarea name="excerpt" class="w-full" placeholder="Ingrese el extracto del artículo">
+            <x-textarea name="excerpt"   class="w-full" placeholder="Ingrese el extracto del artículo">
                 {{ old('excerpt', $post->excerpt) }}
             </x-textarea>
         </div>
@@ -104,9 +104,15 @@
             <x-label class="mb-2 ">
                 Contenido del Artículo
             </x-label>
-            <x-textarea name="body" class="w-full" placeholder="Ingrese el contenido del artículo" rows="8">
-                {{ old('body', $post->body) }}
-            </x-textarea>
+            <div class="ckeditor">
+                <x-textarea name="body"
+                    class="w-full"
+                    id="editor"
+                    placeholder="Ingrese el contenido del artículo"
+                    rows="8">
+                    {{ old('body', $post->body) }}
+                </x-textarea>
+            </div>
         </div>
 
         {{-- Estado del Artículo --}}
@@ -243,6 +249,16 @@
 
             }
         </script>
+
+        {{-- Agregamos el script de ckeditor5 --}}
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
     @endpush
 
 </x-admin-layout>
