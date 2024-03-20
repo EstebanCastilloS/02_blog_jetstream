@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -66,25 +67,30 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
 
+        $data = $request->all();
+
         //guardar de manera asyncrónica a la tabla tags
         $post->tags()->sync($request->tags);
 
-        $post->update($request->all());
+        //manejo de imagenes
+        if($request->file('image')){
 
-        // $data = $request->all();
+            //eliminar imagen anterior
+            if($post->image_path){
+                Storage::delete($post->image_path);
+            }
+            $data['image_path'] = Storage::put('posts', $request->image);
 
+        }
+
+
+        $post->update($data);
 
         session()->flash('swal', [
             'type' => 'success',
             'title' => 'Post actualizado correctamente',
             'text' => 'El post se actualizó con éxito',
         ]);
-
-        // if($request->file('image')){
-        //     $data['image_path'] = Storage::put('posts', $request->image);
-        // }
-
-        //$post->update($data);
 
         return redirect()->route('admin.posts.index', $post);
 

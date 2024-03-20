@@ -6,7 +6,9 @@
 
     @endpush
 
-    <form action="{{ route('admin.posts.update', $post) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.posts.update', $post) }}"
+        method="POST"
+        enctype="multipart/form-data">
 
         @csrf
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -42,7 +43,22 @@ class Post extends Model
     protected function image(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->image_path ?? 'https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg'
+            // get: fn() => $this->image_path ?? 'https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg'
+
+            get: function() {
+                if($this->image_path){
+
+                    if(substr($this->image_path, 0, 8) === 'https://'){
+                        // dd($this->image_path);
+                        return $this->image_path;
+                    }
+
+                    // dd(Storage::url($this->image_path));
+                    return Storage::url($this->image_path);
+                }else{
+                    return 'https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg';
+                }
+            }
 
         );
     }

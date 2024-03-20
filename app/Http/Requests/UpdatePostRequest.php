@@ -31,6 +31,7 @@ class UpdatePostRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
             'published_at' => '',
+            'image' => 'nullable|image|max:1024',
 
 
         ];
