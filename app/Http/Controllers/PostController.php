@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -66,6 +67,44 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+
+        //recuperar imagenes que ya existen
+        $old_images = $post->images->pluck('path')->toArray();
+
+
+        //expreciones regulares
+        $re_extractImages = '/src=["\']([^ ^"^\']*)["\']/ims';
+
+        //extraer imagenes del contenido
+        preg_match_all($re_extractImages, $request->body, $matches);
+        $images = $matches[1];
+
+        //recorrer imagenes y recuperar el patch de la imagen
+        foreach ($images as $key => $image) {
+            $images[$key] = "images/" . pathinfo($image, PATHINFO_BASENAME);
+        }
+
+        //imagenes que llegan del formulario y se comparan con los que ya existen
+        //imagenes recientes
+        $new_images = array_diff($images, $old_images);
+
+        //eliminar imagenes que ya no se usan o las que no están asociadas al post
+        $delete_images = array_diff($old_images, $images);
+
+
+        //mediante la relación lo asocia con el articulo que se esta creando
+        foreach($new_images as $image){
+            $post->images()->create([
+                'path' => $image
+            ]);
+        }
+
+        //eliminar imagenes desde la base de datos
+        foreach($delete_images as $image){
+            Storage::delete($image);
+            Image::where('path', $image)->delete();
+        }
+
 
         $data = $request->all();
 
