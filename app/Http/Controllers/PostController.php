@@ -9,7 +9,11 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Tag;
 use App\Models\User;
+// use App\Jobs\ResizeImage;
+use Illuminate\Support\Facades\Gate;
+// use Intervention\Image\Facades\Image as ResizeImage;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as ImageIntervention;
 
 class PostController extends Controller
 {
@@ -125,6 +129,13 @@ class PostController extends Controller
 
             // Otra manera de guardar archivo con store
             // $data['image_path'] = $request->file('image')->storeAs('posts', $file_name);
+
+            //storage/posts/imagen.jpg
+            $img = ImageIntervention::make('storage/' . $data['image_path']);
+            $img->resize(1200, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save('storage/' . $data['image_path'],null,'jpg');
         }
 
 
