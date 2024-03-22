@@ -30,20 +30,20 @@ class ResizeImage implements ShouldQueue
      */
     public function handle(): void
     {
-        // $image = Storage::get($this->image_path);
+        $image = Storage::get($this->image_path);
 
-        // $img = Image::make($image);
-        // $img->resize(1200, null, function ($constraint) {
-        //     $constraint->aspectRatio();
-        // });
-        // $img->stream('jpg');
+        $img = Image::make($image);
+        $img->resize(700, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->stream('jpg');
 
-        // Storage::put($this->image_path, $img);
+        Storage::put($this->image_path, $img);
 
-        $img = Image::make('storage/' . $this->image_path);
-            $img->resize(700, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $img->save('storage/' . $this->image_path, null, 'jpg');
+        // $img = Image::make('storage/' . $this->image_path);
+        //     $img->resize(700, null, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //     });
+        //     $img->save('storage/' . $this->image_path, null, 'jpg');
     }
 }
