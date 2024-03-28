@@ -71,6 +71,12 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
+                                @can('admin')
+                                    <x-dropdown-link href="{{ route('admin.dashboard') }}">
+                                        Admnistrador
+                                    </x-dropdown-link>
+                                @endcan
+
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>

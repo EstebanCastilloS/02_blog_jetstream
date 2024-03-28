@@ -22,8 +22,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = Post::where('user_id',auth()->id())->latest('id')->paginate(10);
-        $posts = Post::latest('id')->paginate(10);
+        $posts = Post::where('user_id',auth()->id())->latest('id')->paginate(10);
+        //$posts = Post::latest('id')->paginate(10);
         return view('admin.posts.index', compact('posts'));
 
     }
@@ -59,6 +59,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+
+        if (!Gate::allows('author', $post)) {
+            abort(403, 'No tienes permisos para editar este post');
+        }
+
+        // $this->authorize('author', $post);
+
         $categories = Category::all();
         $users = User::all();
         $tags = Tag::all();
