@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,4 +17,8 @@ Route::resource('/categories', CategoryController::class)
 
 //ruta de posts
 Route::resource('/posts', PostController::class)
+    ->except('show');
+
+//ruta roles
+Route::resource('/roles', RoleController::class)
     ->except('show');

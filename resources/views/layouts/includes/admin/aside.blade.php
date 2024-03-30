@@ -18,14 +18,12 @@
             'active' => request()->routeIs('admin.posts.*'),
             'icon' => 'fa-solid fa-blog',
         ],
-        // [
-        //     'name' => 'Roles',
-        //     'url' => route('admin.roles.index'),
-        //     'active' => request()->routeIs('admin.roles.*'),
-        //     'icon' => 'fa-solid fa-user-tag',
-        //     'can' => ['Gestion de Roles']
-
-        // ],
+        [
+            'name' => 'Roles',
+            'url' => route('admin.roles.index'),
+            'active' => request()->routeIs('admin.roles.*'),
+            'icon' => 'fa-solid fa-user-tag',
+        ],
         // [
         //     'name' => 'Permisos',
         //     'url' => route('admin.permissions.index'),
