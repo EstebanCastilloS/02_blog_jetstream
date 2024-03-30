@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -14,7 +15,6 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
-
     }
 
     /**
@@ -22,7 +22,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        $permissions = Permission::all();
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -32,9 +33,14 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:roles,name',
+            'permissions' => 'nullable|array',
         ]);
 
         $role = Role::create($request->all());
+
+        //attach() agrega los permisos que se le pasan por parámetro
+        //al rol
+        $role->permissions()->attach($request->permissions);
 
         session()->flash('swal', [
             'type' => 'success',
@@ -44,16 +50,23 @@ class RoleController extends Controller
 
         return redirect()->route('admin.roles.edit', $role);
 
-
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(Role $role)
+    {
+        return view('admin.roles.show', compact('role'));
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Role $role)
     {
-        return view('admin.roles.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -63,9 +76,14 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:roles,name,' . $role->id,
+            'permissions' => 'nullable|array',
         ]);
 
         $role->update($request->all());
+
+        //sinchronize() sincroniza los permisos que se le pasan por parámetro
+        //con los que ya tiene el rol
+        $role->permissions()->sync($request->permissions);
 
         session()->flash('swal', [
             'type' => 'success',
@@ -74,7 +92,6 @@ class RoleController extends Controller
         ]);
 
         return redirect()->route('admin.roles.edit', $role);
-
     }
 
     /**
@@ -91,6 +108,5 @@ class RoleController extends Controller
         ]);
 
         return redirect()->route('admin.roles.index');
-
     }
 }
