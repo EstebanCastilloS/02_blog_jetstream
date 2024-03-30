@@ -24,14 +24,12 @@
             'active' => request()->routeIs('admin.roles.*'),
             'icon' => 'fa-solid fa-user-tag',
         ],
-        // [
-        //     'name' => 'Permisos',
-        //     'url' => route('admin.permissions.index'),
-        //     'active' => request()->routeIs('admin.permissions.*'),
-        //     'icon' => 'fa-solid fa-key',
-        //     'can' => ['Gestion de Permisos']
-
-        // ],
+        [
+            'name' => 'Permisos',
+            'url' => route('admin.permissions.index'),
+            'active' => request()->routeIs('admin.permissions.*'),
+            'icon' => 'fa-solid fa-key',
+        ],
 
         // [
         //     'name' => 'Usuarios',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,9 @@ Route::resource('/posts', PostController::class)
 //ruta roles
 Route::resource('/roles', RoleController::class)
     ->except('show');
+
+//ruta permissions
+Route::resource('/permissions', PermissionsController::class)
+    ->except('show');
+
+
