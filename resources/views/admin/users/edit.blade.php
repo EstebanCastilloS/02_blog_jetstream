@@ -1,4 +1,17 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard'),
+    ],
+    [
+        'name' => 'Uusarios',
+        'url' => route('admin.roles.index'),
+    ],
+    [
+        'name' => $user->name,
+
+    ]
+]">
 
     <div class="bg-white rounded shadow-lg p-6">
 

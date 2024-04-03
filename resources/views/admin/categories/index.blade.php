@@ -1,4 +1,13 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard'),
+    ],
+    [
+        'name' => 'Categorías',
+
+    ]
+]">
     <h2>hola desde resource-views-admin-categories-index</h2>
 
     <div class="flex justify-end mb-2">

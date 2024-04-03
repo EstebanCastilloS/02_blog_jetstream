@@ -5,36 +5,42 @@
             'url' => route('admin.dashboard'),
             'active' => request()->routeIs('admin.dashboard'),
             'icon' => 'fa-solid fa-gauge-high',
+            'can' => ['Acceso al Dashboard']
         ],
         [
             'name' => 'Categorias',
             'url' => route('admin.categories.index'),
             'active' => request()->routeIs('admin.categories.*'),
             'icon' => 'fa-solid fa-inbox',
+            'can' => ['Gestión de Categorías']
         ],
         [
             'name' => 'Articulos',
             'url' => route('admin.posts.index'),
             'active' => request()->routeIs('admin.posts.*'),
             'icon' => 'fa-solid fa-blog',
+            'can' => ['Gestión de Artículos']
         ],
         [
             'name' => 'Roles',
             'url' => route('admin.roles.index'),
             'active' => request()->routeIs('admin.roles.*'),
             'icon' => 'fa-solid fa-user-tag',
+            'can' => ['Gestión de Roles']
         ],
         [
             'name' => 'Permisos',
             'url' => route('admin.permissions.index'),
             'active' => request()->routeIs('admin.permissions.*'),
             'icon' => 'fa-solid fa-key',
+            'can' => ['Gestión de Permisos']
         ],
         [
             'name' => 'Usuarios',
             'url' => route('admin.users.index'),
             'active' => request()->routeIs('admin.users.*'),
             'icon' => 'fa-solid fa-users',
+            'can' => ['Gestión de Usuarios']
         ],
     ];
 @endphp

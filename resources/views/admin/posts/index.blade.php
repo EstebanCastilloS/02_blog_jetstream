@@ -1,4 +1,13 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard'),
+    ],
+    [
+        'name' => 'Artículos',
+
+    ]
+]">
     <h1>hola desde index de Posts</h1>
 
     <div class="flex justify-end mb-2">

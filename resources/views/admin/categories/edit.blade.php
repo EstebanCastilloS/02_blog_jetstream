@@ -1,4 +1,17 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard'),
+    ],
+    [
+        'name' => 'Categorías',
+        'url' => route('admin.categories.index'),
+    ],
+    [
+        'name' => $category->name,
+
+    ]
+]">
     <h2>hola desde resource-views-admin-categories-edit</h2>
 
     {{-- crear formulario --}}

@@ -1,4 +1,17 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard'),
+    ],
+    [
+        'name' => 'Artículos',
+        'url' => route('admin.posts.index'),
+    ],
+    [
+        'name' => $post->title,
+
+    ]
+]">
     <h1>hola desde edit de Posts</h1>
 
     @push('css')
