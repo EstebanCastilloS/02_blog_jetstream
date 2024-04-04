@@ -1,5 +1,5 @@
 @if ($breadcrumb)
-    <nav class="flex mt-14 -mb-10" aria-label="Breadcrumb">
+    <nav class="flex " aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             @foreach ($breadcrumb as $item)
 

@@ -44,7 +44,15 @@
 
     <div class="p-4 sm:ml-64">
 
-        @include('layouts.includes.admin.breadcrumb')
+        {{-- Agregar en sus esquinas laterales migas de pan y boton --}}
+        <div class="mt-14 -mb-10 flex justify-between items-center" >
+            @include('layouts.includes.admin.breadcrumb')
+
+
+            @isset($action)
+                {{ $action }}
+            @endisset
+        </div>
 
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 
