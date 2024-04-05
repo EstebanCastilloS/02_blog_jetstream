@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PostDetailController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', WelcomeController::class)->name('home');
+
+//se crea para mostrar el detalle de un post
+Route::get('posts/{post}',[PostDetailController::class, 'show'])->name('posts.show');
 
 Route::middleware([
     'auth:sanctum',

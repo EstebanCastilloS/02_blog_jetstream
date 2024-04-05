@@ -32,6 +32,19 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
+    //transformacion de datos
+    protected $casts =
+    [
+        'published' => 'boolean',
+        'published_at' => 'datetime',
+    ];
+
+    //Route model binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     protected function title(): Attribute
     {
         return new Attribute(
